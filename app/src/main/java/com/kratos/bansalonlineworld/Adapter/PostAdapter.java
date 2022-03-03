@@ -1,6 +1,7 @@
 package com.kratos.bansalonlineworld.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kratos.bansalonlineworld.CommentActivity;
 import com.kratos.bansalonlineworld.Model.Post;
 
 import java.util.ArrayList;
@@ -51,7 +53,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                 .placeholder(R.drawable.placeholder)
                 .into(holder.binding.postImage);
         holder.binding.like.setText(model.getPostLike()+"");
-
+        holder.binding.comment.setText(model.getCommentCount()+"");
         String description = model.getPostDescription();
 
         if(description.equals("")){
@@ -125,6 +127,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        holder.binding.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra("postId", model.getPostId());
+                intent.putExtra("postedBy",model.getPostedBy());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
 

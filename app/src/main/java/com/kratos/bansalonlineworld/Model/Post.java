@@ -7,6 +7,9 @@ public class Post {
     private String postDescription;
     private Long postedAt;
     private int postLike;
+    private int CommentCount;
+
+
 
     public Post() {
     }
@@ -45,6 +48,13 @@ public class Post {
 
     public String getPostDescription() {
         return postDescription;
+    }
+    public int getCommentCount() {
+        return CommentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        CommentCount = commentCount;
     }
 
     public void setPostDescription(String postDescription) {
