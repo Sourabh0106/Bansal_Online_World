@@ -5,23 +5,29 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kratos.bansalonlineworld.Model.NotificationModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.kratos.bansalonlineworld.Model.Notification;
 
 import java.util.ArrayList;
+
+import com.kratos.bansalonlineworld.Model.User;
 import com.kratos.bansalonlineworld.R;
+import com.kratos.bansalonlineworld.databinding.NotificationRvDesignBinding;
+import com.squareup.picasso.Picasso;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.viewHolder> {
 
-    ArrayList<NotificationModel> list;
+    ArrayList<Notification> list;
     Context context;
 
-    public NotificationAdapter(ArrayList<NotificationModel> list, Context context) {
+    public NotificationAdapter(ArrayList<Notification> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -29,16 +35,42 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.notification2_sample, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.notification_rv_design, parent, false);
         return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        NotificationModel model = list.get(position);
-        holder.profile.setImageResource(model.getProfile());
-        holder.notification.setText(Html.fromHtml(model.getNotification()));
-        holder.time.setText(model.getTime());
+        Notification notification = list.get(position);
+
+        String type  = notification.getType();
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("Users")
+                .child(notification.getNotificationBy())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        Picasso.get()
+                                .load(user.getProfile())
+                                .placeholder(R.drawable.placeholder)
+                                .into(holder.binding.profileImage);
+                        if(type.equals("like")){
+                            holder.binding.notification.setText(Html.fromHtml("<b>"+ user.getName() +"</b>"+ " liked your post"));
+
+                        }else if(type.equals("comment")){
+                            holder.binding.notification.setText(Html.fromHtml("<b>"+ user.getName() +"</b>"+ " commented on your post"));
+                        }else{
+                            holder.binding.notification.setText(Html.fromHtml("<b>"+ user.getName() +"</b>"+ " started following you"));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     @Override
@@ -47,14 +79,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView profile;
-        TextView notification, time;
-
+        NotificationRvDesignBinding binding;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            profile = itemView.findViewById(R.id.profileImage);
-            notification = itemView.findViewById(R.id.notification);
-            time = itemView.findViewById(R.id.time);
+            binding =NotificationRvDesignBinding.bind(itemView);
 
         }
     }

@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kratos.bansalonlineworld.Model.Follow;
+import com.kratos.bansalonlineworld.Model.Notification;
 import com.kratos.bansalonlineworld.Model.User;
 import com.kratos.bansalonlineworld.R;
 import com.kratos.bansalonlineworld.databinding.UserSampleBinding;
@@ -92,6 +93,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
                                             holder.binding.followBtn.setTextColor(context.getResources().getColor(R.color.grey));
                                             holder.binding.followBtn.setEnabled(false);
                                             Toast.makeText(context, "You Followed "+user.getName(), Toast.LENGTH_SHORT).show();
+
+                                            Notification notification = new Notification();
+                                            notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                            notification.setNotificationAt(new Date().getTime());
+                                            notification.setType("follow");
+
+                                            FirebaseDatabase.getInstance().getReference()
+                                                    .child("notification")
+                                                    .child(user.getUserId())
+                                                    .push()
+                                                    .setValue(notification);
+
+
                                         }
                                     });
                                 }

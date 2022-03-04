@@ -28,6 +28,16 @@ public class LoginActivity extends AppCompatActivity {
         binding.signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(binding.emailET.getText().toString().isEmpty())
+                {
+                    binding.emailET.setError("please enter an email");
+                    return;
+                }
+                if(binding.passwordET.getText().toString().isEmpty())
+                {
+                    binding.passwordET.setError("please enter password");
+                    return;
+                }
                 String email= binding.emailET.getText().toString(),password=binding.passwordET.getText().toString();
                 auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

@@ -12,6 +12,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.iammert.library.readablebottombar.ReadableBottomBar;
 import com.kratos.bansalonlineworld.Fragment.AddFragment;
 import com.kratos.bansalonlineworld.Fragment.AddPostFragment;
@@ -19,7 +23,9 @@ import com.kratos.bansalonlineworld.Fragment.HomeFragment;
 import com.kratos.bansalonlineworld.Fragment.NotificationFragment;
 import com.kratos.bansalonlineworld.Fragment.ProfileFragment;
 import com.kratos.bansalonlineworld.Fragment.SearchFragment;
+import com.kratos.bansalonlineworld.Model.User;
 import com.kratos.bansalonlineworld.databinding.ActivityMainBinding;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;

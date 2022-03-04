@@ -18,9 +18,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kratos.bansalonlineworld.CommentActivity;
+import com.kratos.bansalonlineworld.Model.Notification;
 import com.kratos.bansalonlineworld.Model.Post;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.kratos.bansalonlineworld.Model.User;
 import com.kratos.bansalonlineworld.R;
@@ -115,6 +117,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_heart_black,0,0,0);
+
+                                            Notification notification = new Notification();
+                                            notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                            notification.setNotificationAt(new Date().getTime());
+                                            notification.setPostId(model.getPostId());
+                                            notification.setPostedBy(model.getPostedBy());
+                                            notification.setType("like");
+
+                                            FirebaseDatabase.getInstance().getReference()
+                                                    .child("notification")
+                                                    .child(model.getPostedBy())
+                                                    .push()
+                                                    .setValue(notification);
                                         }
                                     });
                                 }

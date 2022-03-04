@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kratos.bansalonlineworld.Adapter.CommentAdapter;
 import com.kratos.bansalonlineworld.Model.Comment;
+import com.kratos.bansalonlineworld.Model.Notification;
 import com.kratos.bansalonlineworld.Model.Post;
 import com.kratos.bansalonlineworld.Model.User;
 import com.kratos.bansalonlineworld.databinding.ActivityCommentBinding;
@@ -40,6 +42,10 @@ public class CommentActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+
+        setSupportActionBar(binding.toolbar2);
+        CommentActivity.this.setTitle("Comments");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         intent = getIntent();
 
@@ -124,6 +130,19 @@ public class CommentActivity extends AppCompatActivity {
                                     public void onSuccess(Void unused) {
                                         binding.commentET.setText("");
                                         Toast.makeText(CommentActivity.this, "Commented", Toast.LENGTH_SHORT).show();
+
+                                        Notification notification = new Notification();
+                                        notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                        notification.setNotificationAt(new Date().getTime());
+                                        notification.setPostId(postId);
+                                        notification.setPostedBy(postedBy);
+                                        notification.setType("comment");
+
+                                        FirebaseDatabase.getInstance().getReference()
+                                                .child("notification")
+                                                .child(postedBy)
+                                                .push()
+                                                .setValue(notification);
                                     }
                                 });
 
@@ -164,5 +183,11 @@ public class CommentActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

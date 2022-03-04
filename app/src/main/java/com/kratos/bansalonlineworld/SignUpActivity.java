@@ -32,6 +32,28 @@ public class SignUpActivity extends AppCompatActivity {
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(binding.nameET.getText().toString().isEmpty())
+                {
+                    binding.nameET.setError("please enter your name");
+                    return;
+                }
+                if(binding.professionET.getText().toString().isEmpty())
+                {
+                    binding.professionET.setError("please enter your profession");
+                    return;
+                }
+                if(binding.emailET.getText().toString().isEmpty())
+                {
+                    binding.emailET.setError("please enter an email");
+                    return;
+                }
+                if(binding.passwordET.getText().toString().isEmpty())
+                {
+                    binding.passwordET.setError("please enter password");
+                    return;
+                }
+
+
                 auth.createUserWithEmailAndPassword(binding.emailET.getText().toString(),binding.passwordET.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
