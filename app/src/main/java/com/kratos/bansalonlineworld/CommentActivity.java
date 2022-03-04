@@ -96,6 +96,11 @@ public class CommentActivity extends AppCompatActivity {
         binding.commentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(binding.commentET.getText().toString().isEmpty())
+                {
+                    binding.commentET.setError("please enter a comment");
+                    return;
+                }
 
                 Comment comment = new Comment();
                 comment.setCommentBody(binding.commentET.getText().toString());

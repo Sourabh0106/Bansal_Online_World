@@ -155,6 +155,7 @@ public class AddPostFragment extends Fragment {
                                     public void onSuccess(Void unused) {
                                         dialog.dismiss();
                                         Toast.makeText(getContext(), "Posted Successfully", Toast.LENGTH_SHORT).show();
+
                                     }
                                 });
                             }
