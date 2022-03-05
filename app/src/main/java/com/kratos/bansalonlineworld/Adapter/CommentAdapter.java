@@ -20,9 +20,7 @@ import com.kratos.bansalonlineworld.R;
 import com.kratos.bansalonlineworld.databinding.CommentSampleBinding;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder>{
     Context context;

@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.cooltechworks.views.shimmer.ShimmerAdapter;
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,12 +32,10 @@ import com.kratos.bansalonlineworld.Adapter.PostAdapter;
 import com.kratos.bansalonlineworld.Adapter.StoryAdapter;
 import com.kratos.bansalonlineworld.Model.Post;
 import com.kratos.bansalonlineworld.Model.Story;
-import com.kratos.bansalonlineworld.Model.User;
 import com.kratos.bansalonlineworld.Model.UserStories;
 import com.kratos.bansalonlineworld.R;
 import com.kratos.bansalonlineworld.databinding.FragmentHomeBinding;
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,6 +1,8 @@
 package com.kratos.bansalonlineworld.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kratos.bansalonlineworld.CommentActivity;
 import com.kratos.bansalonlineworld.Model.Notification;
 
 import java.util.ArrayList;
@@ -71,6 +74,31 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
                     }
                 });
+
+        holder.binding.openNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!type.equals("follow")) {
+                    FirebaseDatabase.getInstance().getReference()
+                            .child("notification")
+                            .child(notification.getPostedBy())
+                            .child(notification.getNotificationId())
+                            .child("checkOpen")
+                            .setValue(true);
+                    holder.binding.openNotification.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    Intent intent = new Intent(context, CommentActivity.class);
+                    intent.putExtra("postId", notification.getPostId());
+                    intent.putExtra("postedBy", notification.getPostedBy());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.startActivity(intent);
+                }
+            }
+        });
+        Boolean checkOpen = notification.isCheckOpen();
+        if(checkOpen == true){
+            holder.binding.openNotification.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
+        else{}
     }
 
     @Override

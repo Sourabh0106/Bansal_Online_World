@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kratos.bansalonlineworld.Adapter.UserAdapter;
 import com.kratos.bansalonlineworld.Model.User;
-import com.kratos.bansalonlineworld.R;
 import com.kratos.bansalonlineworld.databinding.FragmentSearchBinding;
 
 import java.util.ArrayList;

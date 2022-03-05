@@ -21,15 +21,6 @@
         diagonal:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <View
-        android:id="@+id/statusCircle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/blue_circle"
-        app:layout_constraintBottom_toBottomOf="@id/profileImage"
-        app:layout_constraintEnd_toEndOf="@id/profileImage"
-        app:layout_constraintStart_toStartOf="@id/profileImage"
-        app:layout_constraintTop_toTopOf="@id/profileImage" />
 
     <TextView
         android:id="@+id/name"

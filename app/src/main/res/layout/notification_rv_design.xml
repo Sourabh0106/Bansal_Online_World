@@ -2,8 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/openNotification"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/lightGrey"
+    android:paddingStart="3dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="4dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImage"
@@ -32,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="64dp"
-        android:text="Sourabh mention you in commentSourabh mention you in comment"
         android:textColor="@color/black"
         android:textSize="@dimen/_14mdp"
         app:layout_constraintBottom_toBottomOf="@+id/profileImage"
