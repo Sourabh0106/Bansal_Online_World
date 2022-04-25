@@ -91,32 +91,32 @@ public class AddPostFragment extends Fragment {
             }
         });
 
-        binding.postDescription.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String description = binding.postDescription.getText().toString();
-                if(!description.isEmpty()){
-                    binding.postBtn.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.follow_btn_bg));
-                    binding.postBtn.setTextColor(getContext().getResources().getColor(R.color.white));
-                    binding.postBtn.setEnabled(true);
-                }
-                else{
-                    binding.postBtn.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.follow_active_btn));
-                    binding.postBtn.setTextColor(getContext().getResources().getColor(R.color.derkGrey));
-                    binding.postBtn.setEnabled(false);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+//        binding.postDescription.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                String description = binding.postDescription.getText().toString();
+//                if(!description.isEmpty()){
+//                    binding.postBtn.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.follow_btn_bg));
+//                    binding.postBtn.setTextColor(getContext().getResources().getColor(R.color.white));
+//                    binding.postBtn.setEnabled(true);
+//                }
+//                else{
+//                    binding.postBtn.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.follow_active_btn));
+//                    binding.postBtn.setTextColor(getContext().getResources().getColor(R.color.derkGrey));
+//                    binding.postBtn.setEnabled(false);
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
 
         binding.addImg.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -55,16 +55,6 @@
         app:portion_width="2dp"
         app:portions_count="4" />
 
-    <ImageView
-        android:id="@+id/storyType"
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/storyImg"
-        app:layout_constraintTop_toTopOf="@+id/storyImg"
-        app:srcCompat="@drawable/ic_live" />
-
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"

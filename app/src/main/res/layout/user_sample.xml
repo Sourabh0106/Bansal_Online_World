@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="user name"
-        android:textColor="@color/black"
         android:textSize="@dimen/_14mdp"
         android:textStyle="bold"
         diagonal:layout_constraintBottom_toTopOf="@+id/profession"

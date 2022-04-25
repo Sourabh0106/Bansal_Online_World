@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -88,8 +89,8 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        list = new ArrayList<>();
 
+        list = new ArrayList<>();
 
         FollowersAdapter adapter = new FollowersAdapter(list,getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
@@ -115,6 +116,31 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        binding.addFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/"));
+                startActivity(intent1);
+            }
+        });
+
+        binding.messageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                sendIntent.setData(Uri.parse("sms:"));
+                startActivity(sendIntent);
+            }
+        });
+
+//        binding.call.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"));
+//                startActivity(intent);
+//            }
+//        });
+
         binding.changeCoverPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,6 +160,7 @@ public class ProfileFragment extends Fragment {
                 startActivityForResult(intent,22);
             }
         });
+
 
         return  binding.getRoot();
     }
@@ -186,4 +213,7 @@ public class ProfileFragment extends Fragment {
             }
         }
     }
+
+
+
 }

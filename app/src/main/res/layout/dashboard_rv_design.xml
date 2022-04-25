@@ -33,7 +33,6 @@
         android:layout_marginStart="8dp"
         android:fontFamily="@font/roboto"
         android:text="user name"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/profileImage"

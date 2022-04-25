@@ -11,13 +11,15 @@
         android:layout_width="212dp"
         android:layout_height="175dp"
         android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/ic_login"
+        app:tint="#51C8FD"
         app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/ic_skype" />
+        />
 
     <TextView
         android:id="@+id/textView12"
@@ -25,7 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Welcome to Online World"
-        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView13"
